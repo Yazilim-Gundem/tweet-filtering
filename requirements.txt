@@ -1,0 +1,8 @@
+transformers==4.26.1
+tensorflow-macos==2.11.0
+torch==1.13.1
+torchaudio==0.13.1
+torchvision==0.14.1
+snscrape==0.5.0.20230113
+pandas==1.5.3
+python-dotenv==0.21.1
