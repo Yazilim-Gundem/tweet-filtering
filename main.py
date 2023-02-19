@@ -75,7 +75,8 @@ if __name__ == '__main__':
             share_tweet_list.append({
                 'url': url,
                 'mentioned_users': mentioned_users,
-                'featured_labels': dict(first_3)
+                'featured_labels': dict(first_3),
+                'ss': f'https://tweet-to-image-smoky.vercel.app/?tweet={url}'
             })
 
     with open('result.json', 'w') as f:
