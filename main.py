@@ -4,6 +4,8 @@ __author__ = 'abdullahbozdag'
 __creation_date__ = '17.02.2023'
 
 import datetime
+import json
+
 import pandas as pd
 from helpers import usernames, labels, translate
 from packages.trendy_tweet.src.trendy_tweet.trendy_tweet import TrendyTweet
@@ -64,22 +66,17 @@ if __name__ == '__main__':
             content = translate(text=content, target_language='en')
         result_classification = tweet_classification(tweet_content=content)
 
-        print(url)
-        print('result_classification: ', result_classification)
-
         first_3 = sorted(result_classification.items(), key=lambda x: x[1], reverse=True)[:3]
+
         featured_labels = [
             'software', 'hardware', 'game', 'company', 'brand', 'phone', 'programming', 'tool'
         ]
         if any([x[0] in featured_labels for x in first_3]):
-            print('url: ', url)
-            print('content: ', content)
-            print('result_classification: ', result_classification)
-            print('first_3: ', first_3)
             share_tweet_list.append({
                 'url': url,
                 'mentioned_users': mentioned_users,
+                'featured_labels': dict(first_3)
             })
-            print(' ' * 100)
 
-    print('share_tweet_list: ', share_tweet_list, len(share_tweet_list))
+    with open('result.json', 'w') as f:
+        f.write(json.dumps(share_tweet_list))
